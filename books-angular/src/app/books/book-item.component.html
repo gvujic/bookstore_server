@@ -1,0 +1,27 @@
+<div class="well hoverewell" *ngIf="genres">
+    <div>
+        <div class="headline">
+            <h3>{{book.title | uppercase}} <br><h4> Author: {{book.author}}</h4> </h3>
+            <img src="/assets/{{book.title}}.jpg" onerror="this.src='/assets/book.jpeg'" class="img_list2"/>
+        </div>
+        
+        <button class="btn btn-primary" modal-trigger="{{book.id}}" style="margin-right:5px;">Edit</button>
+        <button class="btn btn-primary" modal-trigger="{{'delete_'+book.id}}" >Delete</button>
+    </div>
+    <collapsible-well style="text-align: center;">
+        <img src="/assets/{{book.title}}.jpg" onerror="this.src='/assets/book.jpeg'" class="img_list"/>
+        <div>Genre: {{book.bookGenreId | genreName : genres}}</div>
+        <div>Pages: {{book.pagesNumber}}</div>
+        <div>Price: {{book.price | currency}}</div>
+        <hr>
+        <div style="overflow:scroll; max-height:200px; overflow-y: auto; overflow-x: auto;">{{book.description}}</div>
+    </collapsible-well>   
+</div>
+
+<simple-modal elementId="{{book.id}}" title="Edit books data" *ngIf="book">
+    <edit-book [book]="book" [genres]="genres" (bookChanged)="bookChangedHandler($event)"></edit-book>
+</simple-modal>
+
+<simple-modal elementId="{{'delete_'+book.id}}" title="Delete book">
+    <delete-book [book]="book" (bookDeleteConfirmed)="deleteBookService($event)"></delete-book>
+</simple-modal>

@@ -1,0 +1,4 @@
+li > a.active { color:orange; }
+.nav.navbar-nav { font-size: 20px; border: 2px; height: 40px;}
+#searchForm { margin-right: 100px; }
+@media (max-width: 1200px) {#searchForm{display: none}}

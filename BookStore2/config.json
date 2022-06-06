@@ -1,0 +1,8 @@
+{
+  "Colors": {
+    "Favorite": "Blue"
+  },
+  "ConnectionStrings": {
+    "BookStoreContextDb": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=BookStoreContextDb;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=true"
+  }
+}

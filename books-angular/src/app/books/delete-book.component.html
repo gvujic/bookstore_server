@@ -1,0 +1,7 @@
+<form style="text-align: center;" *ngIf="book">
+    <h3>Are you sure you want to delete: {{book.title}}? </h3>
+    <img src="/assets/{{book.title}}.jpg" onerror="this.src='/assets/book.jpeg'" class="img_list"/>
+    <hr>
+    <button type="submit"  class="btn btn-primary" (click)="deleteBookConfirm(book)">Delete</button>
+    <button type="close" class="btn btn-default">Cancel</button>
+</form>

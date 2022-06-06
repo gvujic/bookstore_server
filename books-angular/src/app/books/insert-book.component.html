@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="col-md-12">
+        <h3>Insert new book</h3>
+    </div>
+    <div class="col-md-6">
+        <form [formGroup]="newBookForm" (ngSubmit)="saveBook(newBookForm.value)" autocomplete="off">
+            <div class="form-group" [ngClass]="{'error':title.invalid && title.dirty}">
+                <label for="title">Book title:</label>
+                <em *ngIf="title.invalid && title.dirty">Required</em>
+                <input formControlName="title" id="title" type="text" class="form-control" placeholder="title..." />
+            </div>
+            <div class="form-group" [ngClass]="{'error':author.invalid && author.dirty}">
+                <label for="author">Author:</label>
+                <em *ngIf="author.invalid && author.dirty">Required</em>
+                <em *ngIf="author.invalid && author.dirty && author.errors.pattern">Must use letters only</em>
+                <input formControlName="author" id="author" class="form-control" placeholder="author..." />
+            </div>
+            <div class="form-group" [ngClass]="{'error':pagesNumber.invalid && pagesNumber.dirty}">
+                <label for="pagesNumber">Pages number:</label>
+                <em *ngIf="pagesNumber.invalid && pagesNumber.dirty">Required</em>
+                <em *ngIf="pagesNumber.invalid && pagesNumber.dirty && pagesNumber.errors.pattern">Must use numbers only</em>
+                <input formControlName="pagesNumber" id="pagesNumber" type="text" class="form-control" placeholder="pages..." />
+            </div>
+            <div class="form-group" [ngClass]="{'error':price.invalid && price.dirty}">
+                <label for="price">Price:</label>
+                <em *ngIf="price.invalid && price.dirty">Required</em>
+                <em *ngIf="price.invalid && price.dirty && price.errors.pattern">Must use numbers only</em>
+                <input formControlName="price" id="price" type="text" class="form-control" placeholder="price..." />
+            </div>
+            <div class="form-group" [ngClass]="{'error': bookGenre.invalid && bookGenre.dirty}">
+                <label for="bookGenre">Genre:</label>
+                <em *ngIf="bookGenre.invalid && bookGenre.dirty">Required</em>
+                <select ngModel="bookGenre.name" formControlName="bookGenre" class="form-control">
+                  <option value="">select value...</option>
+                  <option *ngFor="let genre of genres" value="{{genre.id}}">{{genre.name}}</option>
+                </select>
+              </div>
+
+              <div class="form-group" [ngClass]="{'error':description.invalid && description.dirty}">
+                <label for="pagesNumber">Description:</label>
+                <em *ngIf="description.invalid && description.dirty">Required</em>
+                <textarea  rows="3"  formControlName="description" id="description" type="text" class="form-control" placeholder="description..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="newBookForm.invalid">Save</button>
+              <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+        </form>
+    </div>   
+</div>

@@ -1,0 +1,47 @@
+<div class="row" >
+    <!-- <h1 *ngIf="filteredBooks.length == 0">No items found.</h1> -->
+    <div *ngIf="sortedViewEnabled">
+        <div *ngFor="let genre of genres" class="col-md-5" >
+            <label style="color: orange;">{{genre.name | uppercase}}</label>
+            <hr>
+            <div *ngFor="let book of genre.books">
+                <book-item [book]="book" (bookUpdateEvent)="updateData()"></book-item>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!sortedViewEnabled">
+        <div *ngFor="let book of filteredBooks"class="col-md-8">
+            <book-item [book]="book" (bookUpdateEvent)="updateData()"></book-item>
+        </div>
+    </div>
+</div>
+
+<div class="myToolBar">
+    <form id="searchForm" (ngSubmit)="searchBooks(searchTerm)" class="col-md-2 search"  >
+        <div class="form-group">
+          <input [(ngModel)]="searchTerm"  name="searchTerm" type="text" class="form-control" placeholder="Search books" >
+        </div>
+        <button class="btn btn-primary" style="width: 100px;">
+          Search
+        </button>
+        <button class="btn btn-info" aria-label="Close" style="margin-left: 3px;" (click)="clearFilter()">
+            <span aria-hidden="true" >×</span>
+        </button>
+    </form>
+    
+    <button (click)="changeBooksView()" class="btn btn-primary sort" [innerText]="buttonTitle" style="width: 100px;"></button>
+
+    <div class="sort2" *ngIf="!sortedViewEnabled">
+        <input type="radio" value="byTitle" name="byTitle" [checked]="byTitleChecked" (click)="handleRadioButton('byTitle')"> Sort by title
+        <hr>
+        <input type="radio" value="byAuthor" name="byAuthor" [checked]="byAuthorChecked" (click)="handleRadioButton('byAuthor')"> Sort by author
+        <hr>
+        <input type="radio" value="byPrice" name="byPrice" [checked]="byPriceChecked" (click)="handleRadioButton('byPrice')"> Sort by price
+        <hr>
+    </div>
+</div>
+
+
+
+
+

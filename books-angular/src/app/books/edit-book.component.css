@@ -1,0 +1,13 @@
+.img_title{
+    position: absolute;
+    right: 70px;
+    top:150px;
+    height: 250px;
+    width: 200px;
+}
+
+em { color:#E05C65; padding-left:10px; float:right; }
+.error input, .error select, .error textarea { background-color:#E3C3C5; }
+.error ::-webkit-input-placeholder { color:#999; }
+.error ::-moz-placeholder { color:#999; }
+.error :-moz-placeholder { color:#999; }

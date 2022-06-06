@@ -1,0 +1,4 @@
+<div (click)="toggleContent()" class="well well-sm pointable" style="margin: 0;padding: 0;">
+    <p style="text-align: center; align-self: flex-end;"><i class="arrow down"></i></p>
+      <ng-content *ngIf="visible"></ng-content>
+</div>

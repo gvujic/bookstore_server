@@ -1,0 +1,49 @@
+<div class="col-md-12">
+    <h3>Edit books data</h3>
+</div>
+<div class="col-md-6">
+    <form [formGroup]="editBookForm"  autocomplete="off" (ngSubmit)="saveBook2()">
+        <div class="form-group" [ngClass]="{'error':editBookForm.controls['title'].invalid && editBookForm.controls['title'].dirty}">
+            <label for="title">Book title:</label>
+            <em *ngIf="editBookForm.controls['title'].invalid && editBookForm.controls['title'].dirty">Required</em>
+            <input name="title" formControlName="title" type="text" id="title" class="form-control" placeholder="title..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':editBookForm.controls['author'].invalid && editBookForm.controls['author'].dirty}">
+            <label for="author">Author:</label>
+            <em *ngIf="editBookForm.controls['author'].invalid && editBookForm.controls['author'].dirty">Required</em>
+            <em *ngIf="editBookForm.controls['author'].invalid && editBookForm.controls['author'].dirty && editBookForm.controls['author'].errors.pattern">Must use letters only</em>
+            <input formControlName="author" id="author" type="text" class="form-control" placeholder="author..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':editBookForm.controls['pagesNumber'].invalid && editBookForm.controls['pagesNumber'].dirty}">
+            <label for="pagesNumber">Pages number:</label>
+            <em *ngIf="editBookForm.controls['pagesNumber'].invalid && editBookForm.controls['pagesNumber'].dirty">Required</em>
+            <em *ngIf="editBookForm.controls['pagesNumber'].invalid && editBookForm.controls['pagesNumber'].dirty && editBookForm.controls['pagesNumber'].errors.pattern">Must use numbers only</em>
+            <input formControlName="pagesNumber" id="pagesNumber" type="text" class="form-control" placeholder="pages..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error':editBookForm.controls['price'].invalid && editBookForm.controls['price'].dirty}">
+            <label for="price">Price:</label>
+            <em *ngIf="editBookForm.controls['price'].invalid && editBookForm.controls['price'].dirty">Required</em>
+            <em *ngIf="editBookForm.controls['price'].invalid && editBookForm.controls['price'].dirty && editBookForm.controls['price'].errors.pattern">Must use numbers only</em>
+            <input formControlName="price" id="price" type="text" class="form-control" placeholder="price..." />
+        </div>
+        <div class="form-group" [ngClass]="{'error': editBookForm.controls['bookGenreId'].invalid && editBookForm.controls['bookGenreId'].dirty}">
+            <label for="bookGenreId">Genre:</label>
+            <em *ngIf="editBookForm.controls['bookGenreId'].invalid && editBookForm.controls['bookGenreId'].dirty">Required</em>
+            <select [selectedIndex]="book?.bookGenreId" formControlName="bookGenreId" class="form-control">
+              <option value="">select genre...</option>
+              <option *ngFor="let genre of genres" value="{{genre.id}}">{{genre.name}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" [ngClass]="{'error':editBookForm.controls['description'].invalid && editBookForm.controls['description'].dirty}">
+            <label for="description">Description:</label>
+            <em *ngIf="editBookForm.controls['description'].invalid && editBookForm.controls['description'].dirty">Required</em>
+            <textarea  rows="3"  formControlName="description" id="description"
+             type="text" class="form-control" placeholder="description..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="editBookForm.invalid" >Save</button>
+    </form>
+</div>
+<div class="col-md 6">
+    <img src="/assets/{{editBookForm.controls['title'].value}}.jpg" onerror="this.src='/assets/book.jpeg'" class="img_title"/>
+</div>
