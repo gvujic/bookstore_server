@@ -1,5 +1,4 @@
 ﻿using BookStore2.Data;
-using BookStore2.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -86,7 +85,7 @@ namespace BookStore2.Controllers
                         issuer: "https://localhost:13960",
                         audience: "https://localhost:13960",
                         claims: claims,
-                        expires: DateTime.Now.AddMinutes(5),
+                        expires: DateTime.Now.AddMinutes(10),
                         signingCredentials: signingCredentials
 
                         );

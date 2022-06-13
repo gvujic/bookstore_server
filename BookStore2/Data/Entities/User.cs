@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookStore2.Data.Entities
+namespace BookStore2.Data
 {
     public class User
     {

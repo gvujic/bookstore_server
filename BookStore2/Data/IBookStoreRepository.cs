@@ -1,5 +1,4 @@
-﻿using BookStore2.Data.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BookStore2.Data
 {
@@ -20,6 +19,13 @@ namespace BookStore2.Data
 
         void DeleteUser(int userId);
         void UpdateUser(User updatedUser);
+
+        void CommentTheBook(Comment comment);
+
+        IEnumerable<Comment> GetAllComments();
+
+        IEnumerable<Comment> GetCommentsForBook(int bookId);
+
 
         bool SaveAll();
     }

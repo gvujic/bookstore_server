@@ -18,5 +18,10 @@ namespace BookStore2.Data
         [ForeignKey("BookGenre")]
         public int BookGenreId { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+
+
+
+
     }
 }

@@ -9,7 +9,6 @@ namespace BookStore2.Data
     {
         public int Id { get; set; }  
         public string Name { get; set; }
-
         public ICollection<Book> Books { get; set; } 
     }
 }

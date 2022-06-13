@@ -1,5 +1,4 @@
-﻿using BookStore2.Data.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
@@ -20,6 +19,7 @@ namespace BookStore2.Data
         public IEnumerable<Book> GetAllBooks()
         {
             return _context.Books
+                .Include(x => x.Comments)
                 .OrderBy(b => b.Title)
                 .ToList();
         }
@@ -108,6 +108,23 @@ namespace BookStore2.Data
                 _context.Entry(current).CurrentValues.SetValues(updatedUser);
                 _context.Entry(current).State = EntityState.Modified;
             }
+        }
+
+        public void CommentTheBook(Comment comment)
+        {
+            _context.Comments.Add(comment);
+        }
+
+        public IEnumerable<Comment> GetAllComments()
+        {
+            return _context.Comments.ToList();
+        }
+
+        public IEnumerable<Comment> GetCommentsForBook(int bookId)
+        {
+            return _context.Comments
+                .Where(x => x.BookId == bookId)
+                .ToList();
         }
     }
 }
