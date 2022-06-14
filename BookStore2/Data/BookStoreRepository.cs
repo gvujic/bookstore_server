@@ -20,6 +20,7 @@ namespace BookStore2.Data
         {
             return _context.Books
                 .Include(x => x.Comments)
+                .Include(x => x.ThumbsUps)
                 .OrderBy(b => b.Title)
                 .ToList();
         }
@@ -77,7 +78,9 @@ namespace BookStore2.Data
 
         public IEnumerable<User> GetAllUsers()
         {
-            return _context.Users.ToList();
+            return _context.Users
+                .Include(x => x.ThumbsUps)
+                .ToList();
         }
 
         public void RegisterUser(User user)
@@ -112,6 +115,7 @@ namespace BookStore2.Data
 
         public void CommentTheBook(Comment comment)
         {
+            comment.Date = comment.Date.ToLocalTime();
             _context.Comments.Add(comment);
         }
 
@@ -125,6 +129,16 @@ namespace BookStore2.Data
             return _context.Comments
                 .Where(x => x.BookId == bookId)
                 .ToList();
+        }
+
+        public void SetThumbsUp(ThumbsUp thumbsUp)
+        {
+            _context.ThumbsUps.Add(thumbsUp);
+        }
+
+        public IEnumerable<ThumbsUp> GetAllThumbsUps()
+        {
+            return _context.ThumbsUps.ToList();
         }
     }
 }

@@ -26,6 +26,9 @@ namespace BookStore2.Data
 
         IEnumerable<Comment> GetCommentsForBook(int bookId);
 
+        void SetThumbsUp(ThumbsUp thumbsUp);
+
+        IEnumerable<ThumbsUp> GetAllThumbsUps();
 
         bool SaveAll();
     }

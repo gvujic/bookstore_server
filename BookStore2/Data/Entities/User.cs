@@ -14,5 +14,7 @@ namespace BookStore2.Data
         public string Password { get; set; }
 
         public string Role { get; set; }
+
+        public ICollection<ThumbsUp> ThumbsUps { get; set; }
     }
 }

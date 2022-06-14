@@ -92,7 +92,11 @@ namespace BookStore2.Controllers
 
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
-                    return Ok(new { Token = tokenString, User = user.UserName, Role = user.Role });
+                    return Ok(new { Token = tokenString, 
+                                    User = user.UserName,
+                                    Role = user.Role,
+                                    Id = user.Id,
+                    });
 
 
                 }

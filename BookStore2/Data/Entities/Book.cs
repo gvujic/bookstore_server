@@ -20,8 +20,6 @@ namespace BookStore2.Data
 
         public ICollection<Comment> Comments { get; set; }
 
-
-
-
+        public ICollection<ThumbsUp> ThumbsUps { get; set; }
     }
 }
