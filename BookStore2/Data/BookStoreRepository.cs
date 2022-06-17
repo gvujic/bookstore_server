@@ -65,6 +65,9 @@ namespace BookStore2.Data
         {
             return _context.BookGenres
                 .Include(x => x.Books)
+                .ThenInclude(x => x.ThumbsUps)
+                .Include(x => x.Books)
+                .ThenInclude(x => x.Comments)
                 .ToList();
               
         }
